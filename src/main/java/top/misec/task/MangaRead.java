@@ -2,8 +2,6 @@ package top.misec.task;
 
 import com.google.gson.JsonObject;
 import lombok.extern.log4j.Log4j2;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
 import top.misec.apiquery.ApiList;
 import top.misec.utils.HttpUtil;
 
@@ -21,7 +19,13 @@ public class MangaRead implements Task {
         String urlParam = "?device=pc&platform=web";
         String requestBody = "comic_id=27355" +
                 "&ep_id=381662";
-        JsonObject result = HttpUtil.doPost(ApiList.mangaRead + urlParam, requestBody);
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("device", "pc");
+        jsonObject.addProperty("platform", "web");
+        jsonObject.addProperty("comic_id", "27355");
+        jsonObject.addProperty("ep_id", "381662");
+
+        JsonObject result = HttpUtil.doPost(ApiList.mangaRead + urlParam, jsonObject);
         int code = result.get(STATUS_CODE_STR).getAsInt();
         if (code == 0) {
             log.info("本日漫画自动阅读1章节成功！，阅读漫画为：堀与宫村");

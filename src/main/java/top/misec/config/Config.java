@@ -3,8 +3,6 @@ package top.misec.config;
 import com.google.gson.Gson;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
 import top.misec.utils.HttpUtil;
 import top.misec.utils.LoadFileResource;
 
@@ -34,6 +32,17 @@ public class Config {
     private boolean monthEndAutoCharge;
 
     /**
+     * 自动打赏快过期礼物[false,true]
+     */
+    private boolean giveGift;
+
+    /**
+     * 打赏快过期礼物对象，为http://live.bilibili.com/后的数字
+     * 填0表示随机打赏。
+     */
+    private String upLive;
+
+    /**
      * 执行客户端操作时的平台 [ios,android]
      */
     private String devicePlatform;
@@ -46,6 +55,7 @@ public class Config {
     private String userAgent;
     private boolean skipDailyTask;
     private String chargeForLove;
+    private int reserveCoins;
 
 
     private static Config CONFIG = new Config();
